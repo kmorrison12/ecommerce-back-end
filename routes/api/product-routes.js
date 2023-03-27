@@ -22,7 +22,7 @@ router.get('/:id', async (req, res) => {
   // be sure to include its associated Category and Tag data
   try {
     const productData = await Product.findByPk(req.params.id, {
-      include: [{ model: ProductTag, Category }]
+      include: [{ model: Tag, Category }]
     });
 
     if (!productData) {
@@ -123,7 +123,7 @@ router.delete('/:id', async (req, res) => {
       return;
     }
 
-    res.status(200).json(tagData);
+    res.status(200).json(productData);
   } catch (err) {
     res.status(500).json(err);
   }
